@@ -4,6 +4,10 @@ const app = express()
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
+
+require('./config/mongoose')
+
+
 const port = process.env.PORT
 
 app.get('/', (req, res) => {
