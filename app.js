@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express()
 const exphbs = require('express-handlebars')
-const Record = require('./models/record')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const routes = require('./routes')
