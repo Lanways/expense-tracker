@@ -17,16 +17,18 @@ app.set('view engine', 'hbs')
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+
 app.get('/', (req, res) => {
   Record.find()
     .lean()
-    .then(records => res.render('index', { records }))
+    .then(records => {
+      res.render('index', { records })
+    })
     .catch(err => console.log(err))
 })
 
 app.post('/records', (req, res) => {
-  // const name = req.user._id
-  console.log(req.body)
   return Record.create({ ...req.body })
     .then(() => res.redirect('/'))
     .catch(err => console.log(err))
@@ -36,7 +38,29 @@ app.get('/records/new', (req, res) => {
   res.render('new')
 })
 
+app.get('/records/:id/edit', (req, res) => {
+  const id = req.params.id
+  return Record.findById(id)
+    .lean()
+    .then(record => {
+      record.date = record.date.toISOString().substring(0, 10)
+      res.render('edit', { record })
+    })
 
+    .catch(err => console.log(err))
+}),
+
+  app.post('/records/:id/edit', (req, res) => {
+    const { name, date, category, amount } = req.body
+    const id = req.params.id
+    return Record.findById(id)
+      .then(record => {
+        Object.assign(record, req.body)
+        return record.save()
+      })
+      .then(() => res.redirect('/'))
+      .catch(err => console.log(err))
+  })
 
 app.listen(port, () => {
   console.log(`Express is running on http://localhost:${port}`)
