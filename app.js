@@ -48,19 +48,27 @@ app.get('/records/:id/edit', (req, res) => {
     })
 
     .catch(err => console.log(err))
-}),
+})
 
-  app.post('/records/:id/edit', (req, res) => {
-    const { name, date, category, amount } = req.body
-    const id = req.params.id
-    return Record.findById(id)
-      .then(record => {
-        Object.assign(record, req.body)
-        return record.save()
-      })
-      .then(() => res.redirect('/'))
-      .catch(err => console.log(err))
-  })
+app.post('/records/:id/edit', (req, res) => {
+  const { name, date, category, amount } = req.body
+  const id = req.params.id
+  return Record.findById(id)
+    .then(record => {
+      Object.assign(record, req.body)
+      return record.save()
+    })
+    .then(() => res.redirect('/'))
+    .catch(err => console.log(err))
+})
+
+app.post('/records/:id/delete', (req, res) => {
+  const id = req.params.id
+  return Record.findById(id)
+    .then(record => record.remove())
+    .then(() => res.redirect('/'))
+    .catch(err => console.log(err))
+})
 
 app.listen(port, () => {
   console.log(`Express is running on http://localhost:${port}`)
