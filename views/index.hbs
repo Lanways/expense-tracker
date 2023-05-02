@@ -19,18 +19,22 @@
     {{#each records}}
     <li class="list-group-item">
       <div class="row">
-        <div class="col-auto me-auto">
+        <div class="col-auto me-auto align-items-center">
           <h4 style="display: inline; vertical-align: middle;">
             {{this.name}}
           </h4>
           <p>{{this.date}}</p>
         </div>
-        <div class="col-auto">
-          <a class="btn btn-success" href="./todos/{{this._id}}/edit">edit</a>
-          <form action="./todos/{{this._id}}?_method=DELETE" method="POST" style="display: inline">
-            <button class="btn btn-danger" type="submit">delete</button>
-          </form>
+        <div class="d-flex col-auto align-items-center">
+          {{this.amount}}
         </div>
+        <div class="d-flex col-auto align-items-center">
+          <a class="btn btn-success" href="./records/{{this._id}}/edit">edit</a>
+        </div>
+        <form action="./records/{{this._id}}?_method=DELETE" method="POST" style=""
+          class="d-flex col-auto align-items-center">
+          <button class="btn btn-danger" type="submit">delete</button>
+        </form>
       </div>
     </li>
     {{/each}}
