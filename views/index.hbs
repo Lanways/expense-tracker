@@ -19,8 +19,11 @@
     {{#each records}}
     <li class="list-group-item">
       <div class="row">
-        <div class="col-auto me-auto align-items-center">
-          <h4 style="display: inline; vertical-align: middle;">
+        <div class="d-flex col-auto align-items-center">
+          <i class="fas {{this.category}}"></i>
+        </div>
+        <div class="col me-auto">
+          <h4>
             {{this.name}}
           </h4>
           <p>{{this.date}}</p>

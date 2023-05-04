@@ -7,29 +7,26 @@
       <input type="text" class="form-control" id="name" name="name" placeholder="飲料" required>
     </div>
     <div class="mb-2">
-      <label for="name">
+      <label for="date">
         日期<span class="text-danger">*</span>
       </label>
-      <input type="date" class="form-control" id="name" name="date" placeholder="" required>
+      <input type="date" class="form-control" id="date" name="date" placeholder="" required>
     </div>
     <div class="mb-2">
       <label for="category" class="form-label">分類<span class="text-danger">*</span></label>
-      <input type="text" class="form-control" id="category" placeholder="餐飲食品" list="categoryOptions" name="category"
-        required />
-      {{! 使用datalist，讓使用者可選擇或自行輸入 }}
-      <datalist id="categoryOptions">
-        <option>家居物業</option>
-        <option>交通出行</option>
-        <option>休閒娛樂</option>
-        <option>餐飲食品</option>
-        <option>其他</option>
-      </datalist>
+      <select class="form-control" id="category" name="category" required>
+        <option value="家居物業" {{#if (eq record.category.name "家居物業" )}} selected {{/if}}>家居物業</option>
+        <option value="交通出行" {{#if (eq record.category.name "交通出行" )}}selected{{/if}}>交通出行</option>
+        <option value="休閒娛樂" {{#if (eq record.category.name "休閒娛樂" )}}selected{{/if}}>休閒娛樂</option>
+        <option value="餐飲食品" {{#if (eq record.category.name "餐飲食品" )}}selected{{/if}}>餐飲食品</option>
+        <option value="其他" {{#if (eq record.category.name "其他" )}}selected{{/if}}>其他</option>
+      </select>
     </div>
     <div class="mb-2">
-      <label for="name">
+      <label for="amount">
         金額<span class="text-danger">*</span>
       </label>
-      <input type="text" class="form-control" id="name" name="amount" placeholder="金額" required>
+      <input type="text" class="form-control" id="amount" name="amount" placeholder="金額" required>
     </div>
     <div class="mb-2">
       <button type="submit" class="btn btn-primary">新增支出</button>

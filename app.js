@@ -16,7 +16,11 @@ require('./config/mongoose')
 
 const port = process.env.PORT
 
-app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
+app.engine('hbs', exphbs({
+  defaultLayout: 'main',
+  extname: '.hbs',
+  helpers: { eq: (a, b) => a === b, }
+}))
 app.set('view engine', 'hbs')
 
 app.use(session({
