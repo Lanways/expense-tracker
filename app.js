@@ -19,7 +19,16 @@ const port = process.env.PORT
 app.engine('hbs', exphbs({
   defaultLayout: 'main',
   extname: '.hbs',
-  helpers: { eq: (a, b) => a === b, }
+  helpers: {
+    eq: (a, b) => a === b,
+    sumAmount: (records) => {
+      let total = 0
+      records.forEach(record => {
+        total += record.amount
+      })
+      return total
+    }
+  }
 }))
 app.set('view engine', 'hbs')
 
