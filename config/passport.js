@@ -10,12 +10,16 @@ module.exports = app => {
     { usernameField: 'email', passReqToCallback: true },
     (req, email, password, done) => {
       User.findOne({ email })
-        .then(user => {
+        .then(user => {         
+          // if (!email || !password) {
+          //   return done(null, false, req.flash('warning', 'email and password are required'))
+          // }
           if (!user) {
-            return done(null, false, { message: 'That email is not registered!' })
+            console.log(user)
+            return done(null, false, req.flash('warning_msg', 'That email is not registered!'))
           }
           if (user.password !== password) {
-            return done(null, false, { message: 'Email or Password incorrect.' })
+            return done(null, false, req.flash('warning_msg', 'Email or Password incorrect.'))
           }
           return done(null, user)
         })
