@@ -2,12 +2,13 @@ const express = require('express')
 const router = express.Router()
 const User = require('../../models/user')
 const passport = require('passport')
+const bcrypt = require('bcryptjs')
 
 router.get('/login', (req, res) => {
   res.render('login')
 })
 
-router.post('/login', (req, res) => {
+router.post('/login', (req, res, next) => {
   const { email, password } = req.body
   if (!email || !password) {
     res.locals.warning_msg = 'Email and Password are required'
@@ -55,7 +56,15 @@ router.post('/register', (req, res) => {
         confirmPassword
       })
     }
-    return User.create({ ...req.body })
+
+    return bcrypt
+      .genSalt(10)
+      .then(salt => bcrypt.hash(password, salt))
+      .then(hash => User.create({
+        name,
+        email,
+        password: hash
+      }))
       .then(() => res.redirect('/'))
       .catch(err => console.log(err))
   })
