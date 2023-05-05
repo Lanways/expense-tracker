@@ -1,47 +1,61 @@
 <div class="container">
-  <div class="form-group mt-5" style="width:">
-    <select class="form-select" aria-label="Default select example">
-      <option selected>類別</option>
-      <option value="1">家居物業</option>
-      <option value="2">交通出行</option>
-      <option value="3">休閒娛樂</option>
-      <option value="4">餐飲食品</option>
-      <option value="5">其他</option>
-    </select>
+  <div class="d-flex justify-content-center mt-5">
+    <div class="dropdown w-50">
+      <a class="btn btn-secondary dropdown-toggle w-100" href="/" role="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        類別
+      </a>
+
+      <ul class="dropdown-menu w-100">
+        <li><a class="dropdown-item" href="/">全部</a></li>
+        <li><a class="dropdown-item" href="/category/家居物業">家居物業</a></li>
+        <li><a class="dropdown-item" href="/category/交通出行">交通出行</a></li>
+        <li><a class="dropdown-item" href="/category/休閒娛樂 ">休閒娛樂</a></li>
+        <li><a class="dropdown-item" href="/category/餐飲食品">餐飲食品</a></li>
+        <li><a class="dropdown-item" href="/category/其他">其他</a></li>
+      </ul>
+    </div>
   </div>
-  <div class="d-flex justify-content-center my-5">
-    <p>總金額:</p>
-    <h1>
-      {{sumAmount records}}
-    </h1>
+
+</div>
+
+<div class="d-flex flex-column mx-auto my-5 w-50">
+  <div class="w-100">
+    <h5 class="text-start">總金額:</h5>
   </div>
-  <ul class="list-group">
-    {{#each records}}
-    <li class="list-group-item">
-      <div class="row">
-        <div class="d-flex col-auto align-items-center">
-          <i class="fas {{this.category}}"></i>
-        </div>
-        <div class="col me-auto">
-          <h4>
-            {{this.name}}
-          </h4>
-          <p>{{this.date}}</p>
-        </div>
-        <div class="d-flex col-auto align-items-center">
-          {{this.amount}}
-        </div>
-        <div class="d-flex col-auto align-items-center">
-          <a class="btn btn-success" href="./records/{{this._id}}/edit">edit</a>
-        </div>
-        <form action="./records/{{this._id}}?_method=DELETE" method="POST" class="d-flex col-auto align-items-center">
-          <button class="btn btn-danger" type="submit">delete</button>
-        </form>
+  <div class="w-100">
+    <h1 class="text-center" style="font-size: 4rem; color: rgb(236, 103, 62);">{{sumAmount records}}</h1>
+  </div>
+</div>
+
+<ul class="list-group w-50 mx-auto">
+  {{#each records}}
+  <li class="list-group-item">
+    <div class="row">
+      <div class="d-flex col-auto align-items-center">
+        <i class="fas {{this.category}}"></i>
       </div>
-    </li>
-    {{/each}}
-  </ul>
-  <div class="d-grid mt-3">
-    <a href="records/new" class="btn btn-primary">新增記帳</a>
-  </div>
+      <div class="col me-auto">
+        <h4>
+          {{this.name}}
+        </h4>
+        <p>{{this.date}}</p>
+      </div>
+      <div class="d-flex col-auto align-items-center">
+        {{this.amount}}
+      </div>
+      <div class="d-flex col-auto align-items-center">
+        <a class="btn btn-success" href="./records/{{this._id}}/edit">edit</a>
+      </div>
+      <form action="./records/{{this._id}}?_method=DELETE" method="POST" class="d-flex col-auto align-items-center">
+        <button class="btn btn-danger" type="submit">delete</button>
+      </form>
+    </div>
+  </li>
+  {{/each}}
+</ul>
+<div class="d-grid mt-3 w-50 mx-auto">
+  <a href="records/new" class="btn btn-primary">新增記帳</a>
+</div>
+
 </div>
