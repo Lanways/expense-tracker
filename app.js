@@ -21,7 +21,7 @@ app.engine('hbs', exphbs({
   extname: '.hbs',
   helpers: {
     eq: (a, b) => a === b,
-    sumAmount: (records) => {
+    totalAmount: (records) => {
       let total = 0
       records.forEach(record => {
         total += record.amount
