@@ -20,6 +20,7 @@ router.get('/:id', (req, res) => {
   Category.findOne({ name: categoryName })
     .then(category => {
       Record.find({ category: category._id, userId })
+        .sort({ date: -1 })
         .populate('category')
         .lean()
         .then(records => {

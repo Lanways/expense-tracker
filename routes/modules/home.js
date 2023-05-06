@@ -27,6 +27,7 @@ router.get('/', (req, res) => {
         // console.log('categoryObj', categoryObj)
       })
       return Record.find({ userId })
+        .sort({ date: 'desc' })
         .lean()
         .then(records => {
           // console.log('records', records)
