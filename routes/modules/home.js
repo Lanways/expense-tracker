@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
       categorise.forEach(category => {
         // console.log('category', category)
         categoryObj[category._id.toString()] = category
-        console.log('categoryObj', categoryObj)
+        // console.log('categoryObj', categoryObj)
       })
       return Record.find({ userId })
         .lean()
@@ -32,9 +32,9 @@ router.get('/', (req, res) => {
           // console.log('records', records)
           records = records.map(record => {
             const categoryId = record.category.toString()
-            record.category = categoryObj[categoryId].icon
+            record.category = categoryObj[categoryId]
             record.date = formatDate(record.date)
-            console.log('records', records)
+            // console.log('records', records)
             return record
           })
           res.render('index', { records })
