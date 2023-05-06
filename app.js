@@ -15,7 +15,7 @@ const routes = require('./routes')
 
 require('./config/mongoose')
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 3000
 
 app.engine('hbs', exphbs({
   defaultLayout: 'main',
