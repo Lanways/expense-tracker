@@ -14,7 +14,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 require('./config/mongoose')
 
-const port = process.env.PORT
+const Port = process.env.PORT || 3000
 
 app.engine('hbs', exphbs({
   defaultLayout: 'main',
@@ -52,6 +52,6 @@ app.use((req, res, next) => {
 })
 app.use(routes)
 
-app.listen(port, () => {
+app.listen(Port, () => {
   console.log(`Express is running on http://localhost:${port}`)
 })
